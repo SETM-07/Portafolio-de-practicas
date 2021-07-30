@@ -1,0 +1,15 @@
+
+
+.card-img-top {
+    width: 80%;
+}
+.card-columns{
+	width:100%;
+	height:1150px;
+}
+
+.photouser {
+    margin-left: 40px;
+    width: 40px;
+    height: 40px;
+}

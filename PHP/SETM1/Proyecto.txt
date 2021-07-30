@@ -1,0 +1,3 @@
+1-Agregar conexión con base de datos para catalogar productos
+2-Agregar Login de usuarios
+3-Corregir tamaño de imagenes en las card
