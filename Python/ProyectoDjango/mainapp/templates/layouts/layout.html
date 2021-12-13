@@ -1,0 +1,103 @@
+<!-- puede estar arriba{% load static %} -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        {% block title %}
+        
+        {% endblock %}
+        |SETM
+    </title>
+
+    {% load static %} <!--o antes del link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <!-- cabecera de la pagina -->
+    <header>
+        <div id="logotipo">
+            <!--logo django-->
+            <img src="{% static 'images/logo.png' %}" />
+            <h1>Proyecto con Django</h1>
+        </div>
+        
+    </header>
+    <!--#Barra superior de navegación -->
+    <nav> 
+        <ul>
+            <li>
+                <a href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <!--#Utiliza de la base de datos y muestra el contenido en la barra -->
+                {% if user.email %}
+                <li>
+                    <a href= "{% url 'list_articles' %}">Categorías</a>
+                <ul>
+                    {% for category in categories%}
+                        <li>
+                            <a href="{% url 'category' category.0 %}">{{category.1}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% for page in pages%}
+                <li>
+                        <a href="{% url 'page' page.2 %}">{{page.1}}</a>
+                </li>
+            {% endfor %}
+
+                <li>
+                <a href="{% url 'logout' %}">Cerra sesión</a>
+                </li>
+                {% else %}
+
+                <li>
+                    <a href="{% url 'register' %}">Registro</a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    <!--
+    
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    
+    -->
+
+    <div id="content">
+        <div class="box">
+
+        
+            
+            {% block content %}
+
+        <!--codigo que viene de template-->
+            <strong>Contenido del bloque original</strong>
+            {% endblock %}
+
+        </div>
+    </div>
+
+    <footer>
+        
+        Master en Python &copy; SETM
+    </footer> 
+
+</body>
+
+</html>
